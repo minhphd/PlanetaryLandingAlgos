@@ -1,0 +1,335 @@
+<robot name="lander" version="1.0">
+  <joint name="camera_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.89873 -2.33125 0.06618"/>
+    <parent link="root"/>
+    <child link="camera_link"/>
+  </joint>
+  <joint name="leg1joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01575 2.90989 -1.69408"/>
+    <parent link="root"/>
+    <child link="leg1_link"/>
+  </joint>
+  <joint name="leg2joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-2.53596 1.47652 -1.69408"/>
+    <parent link="root"/>
+    <child link="leg2_link"/>
+  </joint>
+  <joint name="leg3joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-2.53596 -1.41384 -1.69408"/>
+    <parent link="root"/>
+    <child link="leg3_link"/>
+  </joint>
+  <joint name="leg4joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01827 -2.89950 -1.69408"/>
+    <parent link="root"/>
+    <child link="leg4_link"/>
+  </joint>
+  <joint name="leg5joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="2.49941 -1.45920 -1.69408"/>
+    <parent link="root"/>
+    <child link="leg5_link"/>
+  </joint>
+  <joint name="leg6joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="2.47673 1.43274 -1.69408"/>
+    <parent link="root"/>
+    <child link="leg6_link"/>
+  </joint>
+  <joint name="main_engine_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -1.15404"/>
+    <parent link="root"/>
+    <child link="engine_link"/>
+  </joint>
+  <joint name="thruster1-joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="1.87124 0.00000 -0.36720"/>
+    <parent link="root"/>
+    <child link="thruster1-link"/>
+  </joint>
+  <joint name="thruster2-joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 1.89393 -0.36720"/>
+    <parent link="root"/>
+    <child link="thruster2-link"/>
+  </joint>
+  <joint name="thruster4-joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -1.88259 -0.36720"/>
+    <parent link="root"/>
+    <child link="thruster4-link"/>
+  </joint>
+  <joint name="thruster_3_joint" type="fixed">
+    <origin rpy="0.00000 0.00000 0.00000" xyz="-1.89730 0.00000 -0.32084"/>
+    <parent link="root"/>
+    <child link="thruster3_link"/>
+  </joint>
+  <link name="camera_link">
+    <inertial>
+      <inertia ixx="1" ixy="1" ixz="1" iyy="1" iyz="1" izz="1"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00369 0.08344 0.15420"/>
+      <mass value="1"/>
+    </inertial>
+    <sensor name="camera" type="camera">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <parent link="camera_link"/>
+      <camera>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <hfov>1.57080</hfov>
+        </image>
+      </camera>
+    </sensor>
+    <visual name="camera">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.00369 0.08344 0.15420"/>
+      <geometry>
+        <box size="0.39784 0.39784 0.39784"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="engine_link">
+    <inertial>
+      <inertia ixx="6.62880" ixy="-0.00001" ixz="0.00166" iyy="6.62881" iyz="0.00166" izz="8.49671"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01222 0.01470 0.46571"/>
+      <mass value="8.41"/>
+    </inertial>
+    <visual name="main_engine">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.16212 0.09534 1.06200"/>
+      <material name="0.439216_0.474510_0.501961_0.000000_0.000000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/mesh0.obj" scale="127.63808 127.63806 127.63803"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leg1_link">
+    <collision name="leg1_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.63141" length="0.00000"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.49834" ixy="0.00000" ixz="0.00000" iyy="0.49834" iyz="0.00000" izz="0.99669"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="10.00000"/>
+    </inertial>
+    <sensor name="leg1contact" type="contact">
+      <parent link="leg1_link"/>
+      <contact>
+        <collision>leg1_link</collision>
+      </contact>
+    </sensor>
+    <visual name="leg1">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 -0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/Plane.obj" scale="0.26492 0.26492 0.26492"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leg2_link">
+    <collision name="leg2_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.62326" length="0.00000"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.48557" ixy="0.00000" ixz="0.00000" iyy="0.48557" iyz="0.00000" izz="0.97115"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="10.00000"/>
+    </inertial>
+    <sensor name="leg2contact" type="contact">
+      <parent link="leg2_link"/>
+      <contact>
+        <collision>leg2_link</collision>
+      </contact>
+    </sensor>
+    <visual name="leg2">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/Plane.001.obj" scale="0.26492 0.26492 0.26492"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leg3_link">
+    <collision name="leg3_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00912 -0.02735 0.00000"/>
+      <geometry>
+        <cylinder radius="0.62540" length="0.00000"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.48891" ixy="0.00000" ixz="0.00000" iyy="0.48891" iyz="0.00000" izz="0.97781"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00912 -0.02735 0.00000"/>
+      <mass value="10.00000"/>
+    </inertial>
+    <sensor name="leg3contact" type="contact">
+      <parent link="leg3_link"/>
+      <contact>
+        <collision>leg3_link</collision>
+      </contact>
+    </sensor>
+    <visual name="leg3">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/Plane.002.obj" scale="0.26492 0.26492 0.26492"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leg4_link">
+    <collision name="leg4_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.63548" length="0.00000"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.50479" ixy="0.00000" ixz="0.00000" iyy="0.50479" iyz="0.00000" izz="1.00958"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="10.00000"/>
+    </inertial>
+    <sensor name="leg4contact" type="contact">
+      <parent link="leg4_link"/>
+      <contact>
+        <collision>leg4_link</collision>
+      </contact>
+    </sensor>
+    <visual name="leg4">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/Plane.003.obj" scale="0.26492 0.26492 0.26492"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leg5_link">
+    <collision name="leg5_collision">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <geometry>
+        <cylinder radius="0.63086" length="0.00000"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.49748" ixy="0.00000" ixz="0.00000" iyy="0.49748" iyz="0.00000" izz="0.99496"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 0.00000"/>
+      <mass value="10.00000"/>
+    </inertial>
+    <sensor name="leg5contact" type="contact">
+      <parent link="leg5_link"/>
+      <contact>
+        <collision>leg5_link</collision>
+      </contact>
+    </sensor>
+    <visual name="leg5">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/Plane.004.obj" scale="0.26492 0.26492 0.26492"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="leg6_link">
+    <collision name="leg6_collision">
+      <origin rpy="0.00000 0.00000 0.05065" xyz="0.01367 0.03190 0.00000"/>
+      <geometry>
+        <cylinder radius="0.64485" length="0.00000"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="0.51979" ixy="-0.00000" ixz="0.00000" iyy="0.51979" iyz="0.00000" izz="1.03958"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.01367 0.03190 0.00000"/>
+      <mass value="10.00000"/>
+    </inertial>
+    <sensor name="leg6contact" type="contact">
+      <parent link="leg6_link"/>
+      <contact>
+        <collision>leg6_link</collision>
+      </contact>
+    </sensor>
+    <visual name="leg6">
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.00000 0.00000 -0.00000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/Plane.005.obj" scale="0.26492 0.26492 0.26492"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="root">
+    <collision name="main_body_collision">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-0.01162 -0.00500 1.07111"/>
+      <geometry>
+        <cylinder radius="2.86349" length="2.25537"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="439.25583" ixy="-0.02053" ixz="0.09009" iyy="439.36520" iyz="-0.17007" izz="433.21574"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01235 0.01476 0.38465"/>
+      <mass value="400.00000"/>
+    </inertial>
+    <visual name="main_body">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="2.40942 -0.73600 -0.03586"/>
+      <material name="0.980392_0.713725_0.003922_0.000000_0.000000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/mesh33.obj" scale="127.63807 127.63808 127.63806"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="thruster1-link">
+    <inertial>
+      <inertia ixx="1.39061" ixy="-0.17639" ixz="0.19371" iyy="1.03550" iyz="0.46984" izz="0.73223"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="0.03277 0.01873 0.01038"/>
+      <mass value="1.20000"/>
+    </inertial>
+    <visual name="thruster1">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="-2.04768 0.25727 0.43010"/>
+      <material name="0.615686_0.811765_0.929412_0.000000_0.000000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/mesh6.002.obj" scale="127.63808 127.63805 127.63802"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="thruster2-link">
+    <inertial>
+      <inertia ixx="0.45765" ixy="-0.00000" ixz="-0.00000" iyy="0.45765" iyz="-0.00000" izz="0.23883"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01222 0.03534 0.01462"/>
+      <mass value="1.20000"/>
+    </inertial>
+    <visual name="thruster2">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="2.09579 -0.33206 -1.63090"/>
+      <material name="0.615686_0.811765_0.929412_0.000000_0.000000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/mesh6.obj" scale="127.63808 127.63805 127.63802"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="thruster3_link">
+    <inertial>
+      <inertia ixx="0.45765" ixy="-0.00000" ixz="-0.00000" iyy="0.45765" iyz="0.00000" izz="0.23883"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.02954 0.01470 0.14238"/>
+      <mass value="1.20000"/>
+    </inertial>
+    <visual name="thruster3">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="3.99309 1.56186 -1.67368"/>
+      <material name="0.615686_0.811765_0.929412_0.000000_0.000000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/mesh6.000.obj" scale="127.63808 127.63806 127.63803"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="thruster4-link">
+    <inertial>
+      <inertia ixx="0.45765" ixy="-0.00000" ixz="-0.00000" iyy="0.45765" iyz="0.00000" izz="0.23883"/>
+      <origin rpy="0.00000 0.00000 0.00000" xyz="-0.01222 -0.01729 0.01462"/>
+      <mass value="1.20000"/>
+    </inertial>
+    <visual name="thruster4">
+      <origin rpy="0.00000 0.00000 -0.00000" xyz="2.09579 3.44445 -1.63090"/>
+      <material name="0.615686_0.811765_0.929412_0.000000_0.000000"/>
+      <geometry>
+        <mesh filename="../meshes/obj/mesh6.001.obj" scale="127.63808 127.63805 127.63802"/>
+      </geometry>
+    </visual>
+  </link>
+  <material name="0.439216_0.474510_0.501961_0.000000_0.000000">
+    <color rgba="0.43529 0.47059 0.50196 1.00000"/>
+  </material>
+  <material name="0.615686_0.811765_0.929412_0.000000_0.000000">
+    <color rgba="0.61569 0.81176 0.92549 1.00000"/>
+  </material>
+  <material name="0.980392_0.713725_0.003922_0.000000_0.000000">
+    <color rgba="0.98039 0.70980 0.00392 1.00000"/>
+  </material>
+</robot>
